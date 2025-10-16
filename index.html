@@ -212,28 +212,35 @@
 
   <!-- SCRIPT -->
   <script>
-    const menuButton = document.getElementById('menuButton');
-    const menuPopup = document.getElementById('menuPopup');
+  const menuButton = document.getElementById('menuButton');
+  const menuPopup = document.getElementById('menuPopup');
 
-    menuButton.addEventListener('click', () => {
-      // Toggle tampil/sembunyi
-      menuPopup.style.display = menuPopup.style.display === 'flex' ? 'none' : 'flex';
-    });
+  menuButton.addEventListener('click', () => {
+    // Toggle tampil/sembunyi
+    menuPopup.style.display = menuPopup.style.display === 'flex' ? 'none' : 'flex';
+  });
 
-    // Tutup menu ketika link diklik
-    document.querySelectorAll('.menu-popup a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuPopup.style.display = 'none';
-      });
-    });
+  // Tutup menu & beri jeda 1 detik sebelum menuju link
+  document.querySelectorAll('.menu-popup a').forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault(); // cegah langsung lompat
+      const targetId = link.getAttribute('href'); // ambil tujuan (#teletabisX)
+      menuPopup.style.display = 'none';
 
-    // Tutup menu kalau klik di luar area menu
-    document.addEventListener('click', (event) => {
-      if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
-        menuPopup.style.display = 'none';
-      }
+      // Tunggu 1 detik sebelum scroll
+      setTimeout(() => {
+        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+      }, 1000);
     });
-  </script>
+  });
+
+  // Tutup menu kalau klik di luar area menu
+  document.addEventListener('click', (event) => {
+    if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
+      menuPopup.style.display = 'none';
+    }
+  });
+</script>
 
 </body>
 </html>

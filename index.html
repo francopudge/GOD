@@ -14,27 +14,15 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
       overflow-x: hidden;
-    }
-
-    /* HEADER */
-    header {
       position: relative;
-      width: 100%;
-      height: 70px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      z-index: 1;
-      overflow: hidden;
+      min-height: 100vh;
+      color: #000;
     }
 
-    header video {
-      position: absolute;
+    /* Video latar belakang seluruh halaman */
+    .background-video {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -44,12 +32,25 @@
       pointer-events: none;
     }
 
-    /* Grup kiri: logo + teks */
+    /* HEADER */
+    header {
+      position: relative;
+      width: 100%;
+      height: 70px;
+      background-color: white; /* warna putih */
+      color: black; /* teks hitam agar kontras */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
     .left-group {
       display: flex;
       align-items: center;
       gap: 10px;
-      z-index: 2;
     }
 
     .left-group img {
@@ -59,13 +60,12 @@
     .left-group h1 {
       margin: 0;
       font-size: 24px;
-      color: white;
+      color: black;
       letter-spacing: 1px;
     }
 
     .menu-icon {
       height: 40px;
-      z-index: 2;
     }
 
     main {
@@ -76,34 +76,28 @@
       margin: 0 auto;
     }
 
+    hr {
+      height: 3px;
+      background-color: black;
+      border: none;
+      margin-top: 20px;
+    }
+
     /* FOOTER */
     footer {
       position: relative;
       width: 100%;
       height: 60px;
-      color: white;
+      background-color: white; /* warna putih */
+      color: black;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    footer video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      pointer-events: none;
+      z-index: 10;
     }
 
     footer p {
-      position: relative;
-      z-index: 2;
       margin: 0;
     }
 
@@ -138,45 +132,41 @@
 </head>
 <body>
 
+  <!-- Video background -->
+  <video autoplay muted loop playsinline class="background-video">
+    <source src="back.mp4" type="video/mp4" />
+    Video tidak didukung.
+  </video>
+
   <!-- HEADER -->
   <header>
-    <video autoplay muted loop playsinline>
-      <source src="back.mp4" type="video/mp4" />
-      Video tidak didukung.
-    </video>
-
     <div class="left-group">
       <img src="duel.png" alt="Duel" />
       <h1>G.O.D Duel</h1>
     </div>
-
     <img src="menu.png" alt="Menu" class="menu-icon" />
   </header>
 
   <!-- KONTEN -->
   <main><p>teletabis.</p></main>
-  <hr style="height: 3px; background-color: black; border: none; margin-top: 20px;">
+  <hr>
   <main><p>teletabis.</p></main>
-  <hr style="height: 3px; background-color: black; border: none; margin-top: 20px;">
+  <hr>
   <main><p>teletabis.</p></main>
-  <hr style="height: 3px; background-color: black; border: none; margin-top: 20px;">
+  <hr>
   <main><p>teletabis.</p></main>
-  <hr style="height: 3px; background-color: black; border: none; margin-top: 20px;">
+  <hr>
   <main><p>teletabis.</p></main>
-  <hr style="height: 3px; background-color: black; border: none; margin-top: 20px;">
+  <hr>
   <main><p>teletabis.</p></main>
-  <hr style="height: 3px; background-color: black; border: none; margin-top: 20px;">
+  <hr>
   <main><p>teletabis.</p></main>
-  <hr style="height: 3px; background-color: black; border: none; margin-top: 20px;">
+  <hr>
   <main><p>teletabis.</p></main>
 
   <!-- FOOTER -->
   <footer>
-    <video autoplay muted loop playsinline>
-      <source src="back.mp4" type="video/mp4" />
-      Video tidak didukung.
-    </video>
-    <p></p>
+    <p>Yugioh G.O.D Duel © 2025</p>
   </footer>
 
 </body>

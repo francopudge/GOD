@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website dengan Header & Footer Tetap</title>
+  <title>Yugioh G.O.D DUEL</title>
 
-  <!-- Tambahkan baris ini untuk favicon -->
   <link rel="icon" type="image/png" href="duel.png">
 
   <style>
@@ -13,15 +12,11 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
-      padding-top: 80px; /* ruang agar konten tidak tertutup header */
-      padding-bottom: 60px; /* ruang agar konten tidak tertutup footer */
     }
 
-    /* HEADER (kotak atas) */
+    /* HEADER (tidak fixed) */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
+      position: relative;
       width: 100%;
       height: 70px;
       background-color: #333;
@@ -31,42 +26,33 @@
       justify-content: space-between;
       padding: 0 20px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
     }
 
     header img {
       height: 50px;
     }
 
-    /* Gambar menu digeser ke kiri sedikit */
     header img:last-of-type {
       margin-right: 40px;
     }
 
-    /* KONTEN TENGAH */
     main {
       padding: 20px;
       text-align: center;
     }
 
-    /* Garis hitam di bawah konten */
     main::after {
       content: "";
       display: block;
-      width: 100vw;
+      width: 100%;
       height: 3px;
       background-color: black;
       margin-top: 20px;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
-    /* FOOTER (kotak bawah) */
+    /* FOOTER (tidak fixed) */
     footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
+      position: relative;
       width: 100%;
       height: 50px;
       background-color: #333;
@@ -87,19 +73,16 @@
     <img src="menu.png" alt="Menu" />
   </header>
 
-  <!-- KONTEN UTAMA -->
-  <main><p>teletabis.</p></main>
-  <main><p>teletabis.</p></main>
-  <main><p>teletabis</p></main>
+  <!-- KONTEN -->
   <main><p>teletabis.</p></main>
   <main><p>teletabis.</p></main>
   <main><p>teletabis.</p></main>
   <main><p>teletabis.</p></main>
-<main><p>teletabis.</p></main>
-<main><p>teletabis.</p></main>
-
-
-
+  <main><p>teletabis.</p></main>
+  <main><p>teletabis.</p></main>
+  <main><p>teletabis.</p></main>
+  <main><p>teletabis.</p></main>
+  <main><p>teletabis.</p></main>
 
   <!-- FOOTER -->
   <footer>

@@ -20,8 +20,8 @@
       color: #000;
     }
 
-    /* Video latar belakang seluruh halaman */
-    .background-video {
+    /* Background gambar */
+    .background-image {
       position: fixed;
       top: 0;
       left: 0;
@@ -39,7 +39,7 @@
       left: 0;
       width: 100%;
       height: 70px;
-      background-color: white;
+      background: url('bar1.png') no-repeat center center / cover;
       color: black;
       display: flex;
       align-items: center;
@@ -64,11 +64,26 @@
       font-size: 24px;
       color: black;
       letter-spacing: 1px;
+      text-shadow: none;
     }
 
     .menu-icon {
       height: 40px;
       cursor: pointer;
+      filter: drop-shadow(0 0 2px black);
+      user-select: none;
+    }
+
+    /* Tombol tutup di dalam menu-popup */
+    .close-menu-icon {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      height: 40px;
+      cursor: pointer;
+      filter: drop-shadow(0 0 2px black);
+      user-select: none;
+      z-index: 25;
     }
 
     main {
@@ -91,43 +106,62 @@
       position: relative;
       width: 100%;
       height: 60px;
-      background-color: white;
+      background: url('bar1.png') no-repeat center center / cover;
       color: black;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
       z-index: 10;
+      text-shadow: none;
     }
 
     footer p {
       margin: 0;
     }
 
-    /* MENU POPUP */
+    /* MENU POPUP FULLSCREEN */
     .menu-popup {
       position: fixed;
-      top: 70px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-      border-radius: 8px;
-      padding: 10px;
-      display: none;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('bar2.png') no-repeat center center / cover;
+      display: flex;
       flex-direction: column;
+      padding: 40px 30px;
+      padding-top: 80px; /* Agar tidak tertutup tombol tutup */
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      border-radius: 0;
       z-index: 20;
+      transform: translateX(100%);
+      transition: transform 0.4s ease-in-out;
+      color: black;
+      user-select: none;
+    }
+
+    .menu-popup.show {
+      transform: translateX(0);
     }
 
     .menu-popup a {
+      display: block;
       color: black;
       text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background 0.2s;
+      padding: 15px 25px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+      background-color: rgba(255 255 255 / 0.85);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .menu-popup a:hover {
-      background: rgba(0,0,0,0.1);
+      background-color: rgba(0,0,0,0.3);
+      color: white;
+      text-shadow: none;
     }
 
     /* Responsif */
@@ -149,6 +183,12 @@
         height: 35px;
       }
 
+      .close-menu-icon {
+        top: 10px;
+        right: 10px;
+        height: 35px;
+      }
+
       footer {
         height: 50px;
       }
@@ -156,18 +196,18 @@
       main {
         padding: 80px 15px 15px;
       }
+
+      .menu-popup {
+        padding: 30px 20px;
+        padding-top: 70px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Video background -->
-  <video autoplay muted loop playsinline class="background-video">
-    <source src="back.mp4" type="video/mp4" />
-    Video tidak didukung.
-  </video>
+  <img src="back1.png" alt="Background" class="background-image" />
 
-  <!-- HEADER -->
   <header>
     <div class="left-group">
       <img src="duel.png" alt="Duel" />
@@ -176,8 +216,9 @@
     <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
   </header>
 
-  <!-- MENU POPUP -->
   <div class="menu-popup" id="menuPopup">
+    <img src="menu.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
+
     <a href="#teletabis1">Teletabis 1</a>
     <a href="#teletabis2">Teletabis 2</a>
     <a href="#teletabis3">Teletabis 3</a>
@@ -188,7 +229,6 @@
     <a href="#teletabis8">Teletabis 8</a>
   </div>
 
-  <!-- KONTEN -->
   <main id="teletabis1"><p>teletabis1.</p></main>
   <hr>
   <main id="teletabis2"><p>teletabis2.</p></main>
@@ -205,42 +245,44 @@
   <hr>
   <main id="teletabis8"><p>teletabis8.</p></main>
 
-  <!-- FOOTER -->
   <footer>
     <p>Yugioh G.O.D Duel © 2025</p>
   </footer>
 
-  <!-- SCRIPT -->
   <script>
-  const menuButton = document.getElementById('menuButton');
-  const menuPopup = document.getElementById('menuPopup');
+    const menuButton = document.getElementById('menuButton');
+    const menuPopup = document.getElementById('menuPopup');
+    const closeMenuButton = document.getElementById('closeMenuButton');
 
-  menuButton.addEventListener('click', () => {
-    // Toggle tampil/sembunyi
-    menuPopup.style.display = menuPopup.style.display === 'flex' ? 'none' : 'flex';
-  });
-
-  // Tutup menu & beri jeda 1 detik sebelum menuju link
-  document.querySelectorAll('.menu-popup a').forEach(link => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault(); // cegah langsung lompat
-      const targetId = link.getAttribute('href'); // ambil tujuan (#teletabisX)
-      menuPopup.style.display = 'none';
-
-      // Tunggu 1 detik sebelum scroll
-      setTimeout(() => {
-        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-      }, 1000);
+    // Fungsi Buka Menu
+    menuButton.addEventListener('click', () => {
+      menuPopup.classList.add('show');
     });
-  });
 
-  // Tutup menu kalau klik di luar area menu
-  document.addEventListener('click', (event) => {
-    if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
-      menuPopup.style.display = 'none';
-    }
-  });
-</script>
+    // Fungsi Tutup Menu
+    closeMenuButton.addEventListener('click', () => {
+      menuPopup.classList.remove('show');
+    });
+
+    // Smooth scroll dan tutup menu saat klik link
+    document.querySelectorAll('.menu-popup a').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = link.getAttribute('href');
+        menuPopup.classList.remove('show');
+        setTimeout(() => {
+          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }, 400); // delay sesuai animasi
+      });
+    });
+
+    // Tutup menu jika klik di luar menu dan tombol menu
+    document.addEventListener('click', (event) => {
+      if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
+        menuPopup.classList.remove('show');
+      }
+    });
+  </script>
 
 </body>
 </html>

@@ -131,8 +131,8 @@
       display: flex;
       flex-direction: column;
       padding: 40px 30px;
-      padding-top: 80px; /* Agar tidak tertutup tombol tutup */
-      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      padding-top: 80px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
       border-radius: 0;
       z-index: 20;
       transform: translateX(100%);
@@ -153,13 +153,13 @@
       border-radius: 8px;
       margin-bottom: 12px;
       font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
-      background-color: rgba(255 255 255 / 0.85);
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.85);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .menu-popup a:hover {
-      background-color: rgba(0,0,0,0.3);
+      background-color: rgba(0, 0, 0, 0.3);
       color: white;
       text-shadow: none;
     }
@@ -217,8 +217,7 @@
   </header>
 
   <div class="menu-popup" id="menuPopup">
-    <img src="menu.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
-
+    <img src="x.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
     <a href="#teletabis1">Teletabis 1</a>
     <a href="#teletabis2">Teletabis 2</a>
     <a href="#teletabis3">Teletabis 3</a>
@@ -254,19 +253,19 @@
     const menuPopup = document.getElementById('menuPopup');
     const closeMenuButton = document.getElementById('closeMenuButton');
 
-    // Fungsi Buka Menu
+    // Fungsi buka menu
     menuButton.addEventListener('click', () => {
       menuPopup.classList.add('show');
     });
 
-    // Fungsi Tutup Menu
+    // Fungsi tutup menu
     closeMenuButton.addEventListener('click', () => {
       menuPopup.classList.remove('show');
     });
 
     // Smooth scroll dan tutup menu saat klik link
     document.querySelectorAll('.menu-popup a').forEach(link => {
-      link.addEventListener('click', (event) => {
+      link.addEventListener('click', event => {
         event.preventDefault();
         const targetId = link.getAttribute('href');
         menuPopup.classList.remove('show');
@@ -277,7 +276,7 @@
     });
 
     // Tutup menu jika klik di luar menu dan tombol menu
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
       if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
         menuPopup.classList.remove('show');
       }

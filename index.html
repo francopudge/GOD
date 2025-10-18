@@ -206,8 +206,10 @@
 </head>
 <body>
 
+  <!-- Background -->
   <img src="back1.png" alt="Background" class="background-image" />
 
+  <!-- Header -->
   <header>
     <div class="left-group">
       <img src="duel.png" alt="Duel" />
@@ -216,38 +218,59 @@
     <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
   </header>
 
+  <!-- Menu Popup -->
   <div class="menu-popup" id="menuPopup">
     <img src="x1.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
-    <a href="#teletabis1">Teletabis 1</a>
-    <a href="#teletabis2">Teletabis 2</a>
-    <a href="#teletabis3">Teletabis 3</a>
-    <a href="#teletabis4">Teletabis 4</a>
-    <a href="#teletabis5">Teletabis 5</a>
-    <a href="#teletabis6">Teletabis 6</a>
-    <a href="#teletabis7">Teletabis 7</a>
-    <a href="#teletabis8">Teletabis 8</a>
+    <a href="#home">Home</a>
+    <a href="#member-division">Member Division</a>
+    <a href="#member-ace-card">Member Ace Card</a>
+    <a href="#hall-of-fame">Hall of Fame</a>
+    <a href="#scrim-schedule">Scrim Schedule</a>
+    <a href="#scrim-history">Scrim History</a>
   </div>
 
-  <main id="teletabis1"><p>teletabis1.</p></main>
-  <hr>
-  <main id="teletabis2"><p>teletabis2.</p></main>
-  <hr>
-  <main id="teletabis3"><p>teletabis3.</p></main>
-  <hr>
-  <main id="teletabis4"><p>teletabis4.</p></main>
-  <hr>
-  <main id="teletabis5"><p>teletabis5.</p></main>
-  <hr>
-  <main id="teletabis6"><p>teletabis6.</p></main>
-  <hr>
-  <main id="teletabis7"><p>teletabis7.</p></main>
-  <hr>
-  <main id="teletabis8"><p>teletabis8.</p></main>
+  <!-- Main Content -->
+  <main id="home">
+    <h2>Home</h2>
+    <p>Selamat datang di halaman utama Yugioh G.O.D Duel!</p>
+  </main>
+  <hr />
 
+  <main id="member-division">
+    <h2>Member Division</h2>
+    <p>Informasi tentang pembagian divisi anggota tim.</p>
+  </main>
+  <hr />
+
+  <main id="member-ace-card">
+    <h2>Member Ace Card</h2>
+    <p>Kartu andalan (Ace Card) dari setiap anggota tim.</p>
+  </main>
+  <hr />
+
+  <main id="hall-of-fame">
+    <h2>Hall of Fame</h2>
+    <p>Daftar prestasi dan anggota tim legendaris.</p>
+  </main>
+  <hr />
+
+  <main id="scrim-schedule">
+    <h2>Scrim Schedule</h2>
+    <p>Jadwal pertandingan Scrim mendatang.</p>
+  </main>
+  <hr />
+
+  <main id="scrim-history">
+    <h2>Scrim History</h2>
+    <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
+  </main>
+
+  <!-- Footer -->
   <footer>
     <p>Yugioh G.O.D Duel © 2025</p>
   </footer>
 
+  <!-- Script -->
   <script>
     const menuButton = document.getElementById('menuButton');
     const menuPopup = document.getElementById('menuPopup');
@@ -269,9 +292,12 @@
         event.preventDefault();
         const targetId = link.getAttribute('href');
         menuPopup.classList.remove('show');
-        setTimeout(() => {
-          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        }, 400); // delay sesuai animasi
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }, 400);
+        }
       });
     });
 

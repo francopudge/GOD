@@ -20,7 +20,80 @@
       color: #000;
     }
 
-    /* Background gambar */
+    /* === PRELOADER === */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Background saat awal web */
+      background: url('back2.png') no-repeat center center / cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+      overflow: hidden;
+      transition: opacity 0.5s ease 0.5s;
+    }
+
+    .loader-text {
+      color: yellow;
+      font-size: 5em;
+      font-weight: bold;
+      text-shadow: 0 0 10px #ff0;
+      position: relative;
+      z-index: 1002;
+      user-select: none;
+      margin-top: -10px;
+      margin-bottom: 0;
+    }
+
+    .preloader-animation-area {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .moving-bar {
+      position: absolute;
+      height: 10px;
+      background-color: yellow;
+      box-shadow: 0 0 10px yellow, 0 0 20px rgba(255, 255, 0, 0.5);
+      transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 1001;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #barLeft {
+      left: 0;
+      width: 0;
+    }
+
+    #barRight {
+      right: 0;
+      width: 0;
+    }
+
+    .center-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.8;
+      z-index: 1001;
+    }
+
+    /* LOGO DIPERBESAR LAGI */
+    #centerLogo {
+      height: 250px;
+    }
+
+    /* === BACKGROUND UTAMA === */
     .background-image {
       position: fixed;
       top: 0;
@@ -32,7 +105,7 @@
       pointer-events: none;
     }
 
-    /* HEADER */
+    /* === HEADER === */
     header {
       position: fixed;
       top: 0;
@@ -64,7 +137,6 @@
       font-size: 24px;
       color: black;
       letter-spacing: 1px;
-      text-shadow: none;
     }
 
     .menu-icon {
@@ -74,7 +146,6 @@
       user-select: none;
     }
 
-    /* Tombol tutup di dalam menu-popup */
     .close-menu-icon {
       position: absolute;
       top: 15px;
@@ -101,7 +172,6 @@
       margin-top: 20px;
     }
 
-    /* FOOTER */
     footer {
       position: relative;
       width: 100%;
@@ -113,14 +183,12 @@
       justify-content: center;
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
       z-index: 10;
-      text-shadow: none;
     }
 
     footer p {
       margin: 0;
     }
 
-    /* MENU POPUP FULLSCREEN */
     .menu-popup {
       position: fixed;
       top: 0;
@@ -130,10 +198,8 @@
       background: url('bar2.png') no-repeat center center / cover;
       display: flex;
       flex-direction: column;
-      padding: 40px 30px;
-      padding-top: 80px;
+      padding: 80px 30px 40px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-      border-radius: 0;
       z-index: 20;
       transform: translateX(100%);
       transition: transform 0.4s ease-in-out;
@@ -153,7 +219,6 @@
       border-radius: 8px;
       margin-bottom: 12px;
       font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
       background-color: rgba(255, 255, 255, 0.85);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -161,10 +226,8 @@
     .menu-popup a:hover {
       background-color: rgba(0, 0, 0, 0.3);
       color: white;
-      text-shadow: none;
     }
 
-    /* Responsif */
     @media (max-width: 768px) {
       header {
         height: 60px;
@@ -198,18 +261,40 @@
       }
 
       .menu-popup {
-        padding: 30px 20px;
-        padding-top: 70px;
+        padding: 70px 20px 30px;
+      }
+
+      .loader-text {
+        font-size: 3em;
+      }
+
+      .moving-bar {
+        height: 8px;
+      }
+
+      /* Logo versi mobile tetap besar tapi proporsional */
+      #centerLogo {
+        height: 180px;
       }
     }
   </style>
 </head>
-<body>
 
-  <!-- Background -->
+<body>
+  <!-- === PRELOADER === -->
+  <div id="preloader">
+    <div class="preloader-animation-area">
+      <img src="duel.png" alt="Logo Duel" class="center-icon" id="centerLogo" />
+      <div class="moving-bar" id="barLeft"></div>
+      <div class="moving-bar" id="barRight"></div>
+    </div>
+    <div class="loader-text" id="progressPercent">0%</div>
+  </div>
+
+  <!-- === BACKGROUND UTAMA === -->
   <img src="back1.png" alt="Background" class="background-image" />
 
-  <!-- Header -->
+  <!-- === HEADER === -->
   <header>
     <div class="left-group">
       <img src="duel.png" alt="Duel" />
@@ -218,7 +303,7 @@
     <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
   </header>
 
-  <!-- Menu Popup -->
+  <!-- === MENU POPUP === -->
   <div class="menu-popup" id="menuPopup">
     <img src="x1.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
     <a href="#home">Home</a>
@@ -229,7 +314,7 @@
     <a href="#scrim-history">Scrim History</a>
   </div>
 
-  <!-- Main Content -->
+  <!-- === MAIN CONTENT === -->
   <main id="home">
     <h2>Home</h2>
     <p>Selamat datang di halaman utama Yugioh G.O.D Duel!</p>
@@ -265,28 +350,56 @@
     <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
   </main>
 
-  <!-- Footer -->
+  <!-- === FOOTER === -->
   <footer>
     <p>Yugioh G.O.D Duel © 2025</p>
   </footer>
 
-  <!-- Script -->
+  <!-- === SCRIPT === -->
   <script>
     const menuButton = document.getElementById('menuButton');
     const menuPopup = document.getElementById('menuPopup');
     const closeMenuButton = document.getElementById('closeMenuButton');
+    const preloader = document.getElementById('preloader');
+    const progressPercent = document.getElementById('progressPercent');
+    const barLeft = document.getElementById('barLeft');
+    const barRight = document.getElementById('barRight');
 
-    // Fungsi buka menu
+    let progress = 0;
+    const maxBarWidthVW = 40;
+
+    function updateProgress() {
+      if (progress < 100) {
+        progress += Math.floor(Math.random() * 8) + 3;
+        if (progress > 100) progress = 100;
+
+        progressPercent.textContent = progress + '%';
+
+        const currentBarWidth = (progress / 100) * maxBarWidthVW;
+        barLeft.style.width = currentBarWidth + 'vw';
+        barRight.style.width = currentBarWidth + 'vw';
+
+        setTimeout(updateProgress, 80);
+      } else {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 500);
+        }, 800);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateProgress);
+
     menuButton.addEventListener('click', () => {
       menuPopup.classList.add('show');
     });
 
-    // Fungsi tutup menu
     closeMenuButton.addEventListener('click', () => {
       menuPopup.classList.remove('show');
     });
 
-    // Smooth scroll dan tutup menu saat klik link
     document.querySelectorAll('.menu-popup a').forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
@@ -301,13 +414,11 @@
       });
     });
 
-    // Tutup menu jika klik di luar menu dan tombol menu
     document.addEventListener('click', event => {
       if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
         menuPopup.classList.remove('show');
       }
     });
   </script>
-
 </body>
 </html>

@@ -64,9 +64,7 @@
             z-index: 1001;
         }
 
-        #centerLogo {
-            height: 250px;
-        }
+        #centerLogo { height: 250px; }
 
         .loader-text {
             color: yellow;
@@ -156,6 +154,54 @@
             margin-top: 20px;
         }
 
+        /* --- Ace Card Section Styling --- */
+        .ace-card-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-top: 20px;
+        }
+
+        .ace-card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .ace-card-details {
+            color: white;
+            text-shadow: 1px 1px 3px black;
+        }
+
+        .ace-card-details h3 {
+            margin: 0;
+            font-size: 2em;
+            color: yellow;
+        }
+
+        .ace-card-details p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .ace-card-image {
+            width: 100%;
+            height: auto;
+            border: 5px solid gold;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
         /* ========== FOOTER ========== */
         footer {
             width: 100%;
@@ -219,12 +265,14 @@
             .moving-bar { height: 8px; }
             #centerLogo { height: 180px; }
             .right-group { gap: 10px; }
+            .ace-card-container { max-width: 90%; }
+            .ace-card-details h3 { font-size: 1.5em; }
         }
     </style>
 </head>
 
 <body>
-    <!-- ===== PRELOADER ===== -->
+    <!-- ========== PRELOADER ========== -->
     <div id="preloader">
         <div class="preloader-animation-area">
             <img src="duel.png" alt="Logo Duel" class="center-icon" id="centerLogo" />
@@ -234,10 +282,10 @@
         <div class="loader-text" id="progressPercent">0%</div>
     </div>
 
-    <!-- ===== BACKGROUND ===== -->
+    <!-- Background -->
     <img src="back1.png" alt="Background" class="background-image" />
 
-    <!-- ===== HEADER ===== -->
+    <!-- ========== HEADER ========== -->
     <header>
         <div class="left-group">
             <img src="duel.png" alt="Duel" />
@@ -250,7 +298,7 @@
         </div>
     </header>
 
-    <!-- ===== MENU POPUP ===== -->
+    <!-- ========== MENU POPUP ========== -->
     <div class="menu-popup" id="menuPopup">
         <img src="x1.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
         <a href="#home">Home</a>
@@ -261,7 +309,7 @@
         <a href="#scrim-history">Scrim History</a>
     </div>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- ========== MAIN CONTENT ========== -->
     <main id="home">
         <h2>Home</h2>
         <p>Selamat datang di halaman utama Yugioh G.O.D Duel!</p>
@@ -276,7 +324,23 @@
 
     <main id="member-ace-card">
         <h2>Member Ace Card</h2>
-        <p>Kartu andalan (Ace Card) dari setiap anggota tim.</p>
+        <div class="ace-card-gallery">
+            <div class="ace-card-container">
+                <div class="ace-card-details">
+                    <p>Member: <strong>Ridwan Kristiadi</strong></p>
+                    <h3>Arcana Force Chaos Ruler</h3>
+                </div>
+                <img src="arcana.png" alt="Arcana Force Chaos Ruler" class="ace-card-image" />
+            </div>
+
+            <div class="ace-card-container">
+                <div class="ace-card-details">
+                    <p>Member: <strong>Zen</strong></p>
+                    <h3>Cosmic Blazar Dragon</h3>
+                </div>
+                <img src="cosmic.png" alt="Cosmic Blazar Dragon" class="ace-card-image" />
+            </div>
+        </div>
     </main>
     <hr />
 
@@ -294,18 +358,18 @@
 
     <main id="scrim-history">
         <h2>Scrim History</h2>
-        <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
+        <p>Catatan pertandingan Scrim sebelumnya.</p>
     </main>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ========== FOOTER ========== -->
     <footer>
         <p>Yugioh G.O.D Duel © 2025</p>
     </footer>
 
-    <!-- ===== AUDIO PLAYER ===== -->
+    <!-- ========== AUDIO ========== -->
     <audio id="bgm" src="Yu-Gi-Oh! GX BGM Camula theme.mp3" loop></audio>
 
-    <!-- ===== SCRIPT ===== -->
+    <!-- ========== SCRIPT ========== -->
     <script>
         const menuButton = document.getElementById('menuButton');
         const menuPopup = document.getElementById('menuPopup');
@@ -318,12 +382,8 @@
         const bgm = document.getElementById('bgm');
 
         let progress = 0;
-        let maxBarWidthVW = 40; // default desktop
+        let maxBarWidthVW = window.innerWidth <= 768 ? 35 : 40;
         const MAX_VISUAL_PROGRESS = 95;
-
-        if (window.innerWidth <= 768) {
-            maxBarWidthVW = 35;
-        }
 
         function setBarWidth(percent) {
             const visualProgress = Math.min(percent, MAX_VISUAL_PROGRESS);
@@ -342,7 +402,13 @@
 
                 if (progress === 100) {
                     preloader.style.opacity = '0';
-                    setTimeout(() => preloader.style.display = 'none', 500);
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        const target = document.getElementById('member-ace-card');
+                        if (target) {
+                            setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
+                        }
+                    }, 500);
                 } else {
                     setTimeout(updateProgress, 80);
                 }
@@ -360,9 +426,9 @@
                 event.preventDefault();
                 const targetId = link.getAttribute('href');
                 menuPopup.classList.remove('show');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    setTimeout(() => targetElement.scrollIntoView({ behavior: 'smooth' }), 400);
+                const target = document.querySelector(targetId);
+                if (target) {
+                    setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 400);
                 }
             });
         });
@@ -379,15 +445,13 @@
             if (isPlaying) {
                 bgm.pause();
                 musicButton.src = 'play.png';
-                isPlaying = false;
             } else {
-                bgm.play();
+                bgm.play().catch(() => console.log("Autoplay blocked."));
                 musicButton.src = 'pause.png';
-                isPlaying = true;
             }
+            isPlaying = !isPlaying;
         });
 
-        // Pastikan musik berhenti saat tab ditutup/refresh
         window.addEventListener('beforeunload', () => bgm.pause());
     </script>
 </body>

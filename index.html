@@ -27,8 +27,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* Background saat awal web */
       background: url('back2.png') no-repeat center center / cover;
+      background-color: black;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -88,7 +88,6 @@
       z-index: 1001;
     }
 
-    /* LOGO DIPERBESAR LAGI */
     #centerLogo {
       height: 250px;
     }
@@ -113,6 +112,7 @@
       width: 100%;
       height: 70px;
       background: url('bar1.png') no-repeat center center / cover;
+      background-color: #ccc;
       color: black;
       display: flex;
       align-items: center;
@@ -139,7 +139,8 @@
       letter-spacing: 1px;
     }
 
-    .menu-icon {
+    .menu-icon,
+    .close-menu-icon {
       height: 40px;
       cursor: pointer;
       filter: drop-shadow(0 0 2px black);
@@ -150,10 +151,6 @@
       position: absolute;
       top: 15px;
       right: 20px;
-      height: 40px;
-      cursor: pointer;
-      filter: drop-shadow(0 0 2px black);
-      user-select: none;
       z-index: 25;
     }
 
@@ -177,6 +174,7 @@
       width: 100%;
       height: 60px;
       background: url('bar1.png') no-repeat center center / cover;
+      background-color: #ccc;
       color: black;
       display: flex;
       align-items: center;
@@ -189,6 +187,7 @@
       margin: 0;
     }
 
+    /* === MENU POPUP === */
     .menu-popup {
       position: fixed;
       top: 0;
@@ -196,6 +195,7 @@
       width: 100vw;
       height: 100vh;
       background: url('bar2.png') no-repeat center center / cover;
+      background-color: #555;
       display: flex;
       flex-direction: column;
       padding: 80px 30px 40px;
@@ -228,6 +228,7 @@
       color: white;
     }
 
+    /* === RESPONSIVE === */
     @media (max-width: 768px) {
       header {
         height: 60px;
@@ -272,7 +273,6 @@
         height: 8px;
       }
 
-      /* Logo versi mobile tetap besar tapi proporsional */
       #centerLogo {
         height: 180px;
       }
@@ -291,7 +291,6 @@
     <div class="loader-text" id="progressPercent">0%</div>
   </div>
 
-  <!-- === BACKGROUND UTAMA === -->
   <img src="back1.png" alt="Background" class="background-image" />
 
   <!-- === HEADER === -->
@@ -374,19 +373,20 @@
         if (progress > 100) progress = 100;
 
         progressPercent.textContent = progress + '%';
-
         const currentBarWidth = (progress / 100) * maxBarWidthVW;
         barLeft.style.width = currentBarWidth + 'vw';
         barRight.style.width = currentBarWidth + 'vw';
 
-        setTimeout(updateProgress, 80);
-      } else {
-        setTimeout(() => {
-          preloader.style.opacity = '0';
+        if (progress === 100) {
           setTimeout(() => {
-            preloader.style.display = 'none';
-          }, 500);
-        }, 800);
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 500);
+          }, 800);
+        } else {
+          setTimeout(updateProgress, 80);
+        }
       }
     }
 

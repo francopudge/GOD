@@ -1,424 +1,345 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yugioh G.O.D DUEL</title>
-  <link rel="icon" type="image/png" href="duel.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yugioh G.O.D DUEL</title>
+    <link rel="icon" type="image/png" href="duel.png" />
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-      color: #000;
-    }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            color: #000;
+        }
 
-    /* === PRELOADER === */
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('back2.png') no-repeat center center / cover;
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 1000;
-      overflow: hidden;
-      transition: opacity 0.5s ease 0.5s;
-    }
+        /* === PRELOADER === */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: url('back2.png') no-repeat center center / cover, black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow: hidden;
+            transition: opacity 0.5s ease 0.5s;
+        }
 
-    .loader-text {
-      color: yellow;
-      font-size: 5em;
-      font-weight: bold;
-      text-shadow: 0 0 10px #ff0;
-      position: relative;
-      z-index: 1002;
-      user-select: none;
-      margin-top: -10px;
-      margin-bottom: 0;
-    }
+        .preloader-animation-area {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .preloader-animation-area {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .moving-bar {
+            position: absolute;
+            height: 10px;
+            background-color: yellow;
+            box-shadow: 0 0 10px yellow, 0 0 20px rgba(255, 255, 0, 0.5);
+            top: 50%;
+            transform: translateY(-50%);
+            transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 1001;
+        }
 
-    .moving-bar {
-      position: absolute;
-      height: 10px;
-      background-color: yellow;
-      box-shadow: 0 0 10px yellow, 0 0 20px rgba(255, 255, 0, 0.5);
-      transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-      z-index: 1001;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+        #barLeft { left: 0; width: 0; }
+        #barRight { right: 0; width: 0; }
 
-    #barLeft {
-      left: 0;
-      width: 0;
-    }
+        .center-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+            z-index: 1001;
+        }
 
-    #barRight {
-      right: 0;
-      width: 0;
-    }
+        #centerLogo {
+            height: 250px;
+        }
 
-    .center-icon {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.8;
-      z-index: 1001;
-    }
+        .loader-text {
+            color: yellow;
+            font-size: 5em;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0;
+            margin: -10px 0 0;
+            user-select: none;
+            z-index: 1002;
+        }
 
-    #centerLogo {
-      height: 250px;
-    }
+        /* === BACKGROUND === */
+        .background-image {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    /* === BACKGROUND UTAMA === */
-    .background-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      pointer-events: none;
-    }
+        /* === HEADER === */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: url('bar1.png') no-repeat center center / cover, #ccc;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
 
-    /* === HEADER === */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px;
-      background: url('bar1.png') no-repeat center center / cover;
-      background-color: #ccc;
-      color: black;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      z-index: 10;
-    }
+        .left-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .left-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .left-group img { height: 50px; }
+        .left-group h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
 
-    .left-group img {
-      height: 50px;
-    }
+        .menu-icon, .close-menu-icon {
+            height: 40px;
+            cursor: pointer;
+            filter: drop-shadow(0 0 2px black);
+            user-select: none;
+        }
 
-    .left-group h1 {
-      margin: 0;
-      font-size: 24px;
-      color: black;
-      letter-spacing: 1px;
-    }
+        .close-menu-icon {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            z-index: 25;
+        }
 
-    .menu-icon,
-    .close-menu-icon {
-      height: 40px;
-      cursor: pointer;
-      filter: drop-shadow(0 0 2px black);
-      user-select: none;
-    }
+        /* === MAIN CONTENT === */
+        main {
+            max-width: 100vw;
+            padding: 100px 20px 20px;
+            text-align: center;
+        }
 
-    .close-menu-icon {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      z-index: 25;
-    }
+        hr {
+            height: 3px;
+            background-color: black;
+            border: none;
+            margin-top: 20px;
+        }
 
-    main {
-      width: 100%;
-      max-width: 100vw;
-      padding: 100px 20px 20px;
-      text-align: center;
-      margin: 0 auto;
-    }
+        /* === FOOTER === */
+        footer {
+            width: 100%;
+            height: 60px;
+            background: url('bar1.png') no-repeat center center / cover, #ccc;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
 
-    hr {
-      height: 3px;
-      background-color: black;
-      border: none;
-      margin-top: 20px;
-    }
+        footer p { margin: 0; }
 
-    footer {
-      position: relative;
-      width: 100%;
-      height: 60px;
-      background: url('bar1.png') no-repeat center center / cover;
-      background-color: #ccc;
-      color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-      z-index: 10;
-    }
+        /* === MENU POPUP === */
+        .menu-popup {
+            position: fixed;
+            inset: 0;
+            background: url('bar2.png') no-repeat center center / cover, #555;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 30px 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+            color: black;
+            z-index: 20;
+        }
 
-    footer p {
-      margin: 0;
-    }
+        .menu-popup.show { transform: translateX(0); }
 
-    /* === MENU POPUP === */
-    .menu-popup {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('bar2.png') no-repeat center center / cover;
-      background-color: #555;
-      display: flex;
-      flex-direction: column;
-      padding: 80px 30px 40px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-      z-index: 20;
-      transform: translateX(100%);
-      transition: transform 0.4s ease-in-out;
-      color: black;
-      user-select: none;
-    }
+        .menu-popup a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            padding: 15px 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.85);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-    .menu-popup.show {
-      transform: translateX(0);
-    }
+        .menu-popup a:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+        }
 
-    .menu-popup a {
-      display: block;
-      color: black;
-      text-decoration: none;
-      padding: 15px 25px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      font-weight: bold;
-      background-color: rgba(255, 255, 255, 0.85);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .menu-popup a:hover {
-      background-color: rgba(0, 0, 0, 0.3);
-      color: white;
-    }
-
-    /* === RESPONSIVE === */
-    @media (max-width: 768px) {
-      header {
-        height: 60px;
-        padding: 0 10px;
-      }
-
-      .left-group img {
-        height: 40px;
-      }
-
-      .left-group h1 {
-        font-size: 18px;
-      }
-
-      .menu-icon {
-        height: 35px;
-      }
-
-      .close-menu-icon {
-        top: 10px;
-        right: 10px;
-        height: 35px;
-      }
-
-      footer {
-        height: 50px;
-      }
-
-      main {
-        padding: 80px 15px 15px;
-      }
-
-      .menu-popup {
-        padding: 70px 20px 30px;
-      }
-
-      .loader-text {
-        font-size: 3em;
-      }
-
-      .moving-bar {
-        height: 8px;
-      }
-
-      #centerLogo {
-        height: 180px;
-      }
-    }
-  </style>
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            header { height: 60px; padding: 0 10px; }
+            .left-group img { height: 40px; }
+            .left-group h1 { font-size: 18px; }
+            .menu-icon, .close-menu-icon { height: 35px; }
+            .close-menu-icon { top: 10px; right: 10px; }
+            footer { height: 50px; }
+            main { padding: 80px 15px 15px; }
+            .menu-popup { padding: 70px 20px 30px; }
+            .loader-text { font-size: 3em; }
+            .moving-bar { height: 8px; }
+            #centerLogo { height: 180px; }
+        }
+    </style>
 </head>
 
 <body>
-  <!-- === PRELOADER === -->
-  <div id="preloader">
-    <div class="preloader-animation-area">
-      <img src="duel.png" alt="Logo Duel" class="center-icon" id="centerLogo" />
-      <div class="moving-bar" id="barLeft"></div>
-      <div class="moving-bar" id="barRight"></div>
+    <!-- === PRELOADER === -->
+    <div id="preloader">
+        <div class="preloader-animation-area">
+            <img src="duel.png" alt="Logo Duel" class="center-icon" id="centerLogo" />
+            <div class="moving-bar" id="barLeft"></div>
+            <div class="moving-bar" id="barRight"></div>
+        </div>
+        <div class="loader-text" id="progressPercent">0%</div>
     </div>
-    <div class="loader-text" id="progressPercent">0%</div>
-  </div>
 
-  <img src="back1.png" alt="Background" class="background-image" />
+    <!-- === BACKGROUND === -->
+    <img src="back1.png" alt="Background" class="background-image" />
 
-  <!-- === HEADER === -->
-  <header>
-    <div class="left-group">
-      <img src="duel.png" alt="Duel" />
-      <h1>G.O.D Duel</h1>
+    <!-- === HEADER === -->
+    <header>
+        <div class="left-group">
+            <img src="duel.png" alt="Duel" />
+            <h1>G.O.D Duel</h1>
+        </div>
+        <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
+    </header>
+
+    <!-- === MENU POPUP === -->
+    <div class="menu-popup" id="menuPopup">
+        <img src="x1.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
+        <a href="#home">Home</a>
+        <a href="#member-division">Member Division</a>
+        <a href="#member-ace-card">Member Ace Card</a>
+        <a href="#hall-of-fame">Hall of Fame</a>
+        <a href="#scrim-schedule">Scrim Schedule</a>
+        <a href="#scrim-history">Scrim History</a>
     </div>
-    <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
-  </header>
 
-  <!-- === MENU POPUP === -->
-  <div class="menu-popup" id="menuPopup">
-    <img src="x1.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
-    <a href="#home">Home</a>
-    <a href="#member-division">Member Division</a>
-    <a href="#member-ace-card">Member Ace Card</a>
-    <a href="#hall-of-fame">Hall of Fame</a>
-    <a href="#scrim-schedule">Scrim Schedule</a>
-    <a href="#scrim-history">Scrim History</a>
-  </div>
+    <!-- === CONTENT SECTIONS === -->
+    <main id="home">
+        <h2>Home</h2>
+        <p>Selamat datang di halaman utama Yugioh G.O.D Duel!</p>
+    </main>
+    <hr />
 
-  <!-- === MAIN CONTENT === -->
-  <main id="home">
-    <h2>Home</h2>
-    <p>Selamat datang di halaman utama Yugioh G.O.D Duel!</p>
-  </main>
-  <hr />
+    <main id="member-division">
+        <h2>Member Division</h2>
+        <p>Informasi tentang pembagian divisi anggota tim.</p>
+    </main>
+    <hr />
 
-  <main id="member-division">
-    <h2>Member Division</h2>
-    <p>Informasi tentang pembagian divisi anggota tim.</p>
-  </main>
-  <hr />
+    <main id="member-ace-card">
+        <h2>Member Ace Card</h2>
+        <p>Kartu andalan (Ace Card) dari setiap anggota tim.</p>
+    </main>
+    <hr />
 
-  <main id="member-ace-card">
-    <h2>Member Ace Card</h2>
-    <p>Kartu andalan (Ace Card) dari setiap anggota tim.</p>
-  </main>
-  <hr />
+    <main id="hall-of-fame">
+        <h2>Hall of Fame</h2>
+        <p>Daftar prestasi dan anggota tim legendaris.</p>
+    </main>
+    <hr />
 
-  <main id="hall-of-fame">
-    <h2>Hall of Fame</h2>
-    <p>Daftar prestasi dan anggota tim legendaris.</p>
-  </main>
-  <hr />
+    <main id="scrim-schedule">
+        <h2>Scrim Schedule</h2>
+        <p>Jadwal pertandingan Scrim mendatang.</p>
+    </main>
+    <hr />
 
-  <main id="scrim-schedule">
-    <h2>Scrim Schedule</h2>
-    <p>Jadwal pertandingan Scrim mendatang.</p>
-  </main>
-  <hr />
+    <main id="scrim-history">
+        <h2>Scrim History</h2>
+        <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
+    </main>
 
-  <main id="scrim-history">
-    <h2>Scrim History</h2>
-    <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
-  </main>
+    <!-- === FOOTER === -->
+    <footer>
+        <p>Yugioh G.O.D Duel © 2025</p>
+    </footer>
 
-  <!-- === FOOTER === -->
-  <footer>
-    <p>Yugioh G.O.D Duel © 2025</p>
-  </footer>
+    <!-- === SCRIPT === -->
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const menuPopup = document.getElementById('menuPopup');
+        const closeMenuButton = document.getElementById('closeMenuButton');
+        const preloader = document.getElementById('preloader');
+        const progressPercent = document.getElementById('progressPercent');
+        const barLeft = document.getElementById('barLeft');
+        const barRight = document.getElementById('barRight');
 
-  <!-- === SCRIPT === -->
-  <script>
-    const menuButton = document.getElementById('menuButton');
-    const menuPopup = document.getElementById('menuPopup');
-    const closeMenuButton = document.getElementById('closeMenuButton');
-    const preloader = document.getElementById('preloader');
-    const progressPercent = document.getElementById('progressPercent');
-    const barLeft = document.getElementById('barLeft');
-    const barRight = document.getElementById('barRight');
+        let progress = 0;
+        const maxBarWidthVW = 40;
 
-    let progress = 0;
-    const maxBarWidthVW = 40;
-
-    function updateProgress() {
-      if (progress < 100) {
-        progress += Math.floor(Math.random() * 8) + 3;
-        if (progress > 100) progress = 100;
-
-        progressPercent.textContent = progress + '%';
-        const currentBarWidth = (progress / 100) * maxBarWidthVW;
-        barLeft.style.width = currentBarWidth + 'vw';
-        barRight.style.width = currentBarWidth + 'vw';
-
-        if (progress === 100) {
-          setTimeout(() => {
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-              preloader.style.display = 'none';
-            }, 500);
-          }, 800);
-        } else {
-          setTimeout(updateProgress, 80);
+        function setBarWidth(percent) {
+            const currentWidth = (percent / 100) * maxBarWidthVW;
+            barLeft.style.width = `${currentWidth}vw`;
+            barRight.style.width = `${currentWidth}vw`;
         }
-      }
-    }
 
-    document.addEventListener('DOMContentLoaded', updateProgress);
+        function updateProgress() {
+            if (progress < 100) {
+                progress += Math.floor(Math.random() * 8) + 3;
+                if (progress > 100) progress = 100;
 
-    menuButton.addEventListener('click', () => {
-      menuPopup.classList.add('show');
-    });
+                progressPercent.textContent = `${progress}%`;
+                setBarWidth(progress);
 
-    closeMenuButton.addEventListener('click', () => {
-      menuPopup.classList.remove('show');
-    });
-
-    document.querySelectorAll('.menu-popup a').forEach(link => {
-      link.addEventListener('click', event => {
-        event.preventDefault();
-        const targetId = link.getAttribute('href');
-        menuPopup.classList.remove('show');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          setTimeout(() => {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }, 400);
+                if (progress === 100) {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => preloader.style.display = 'none', 500);
+                } else {
+                    setTimeout(updateProgress, 80);
+                }
+            }
         }
-      });
-    });
 
-    document.addEventListener('click', event => {
-      if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
-        menuPopup.classList.remove('show');
-      }
-    });
-  </script>
+        document.addEventListener('DOMContentLoaded', updateProgress);
+
+        menuButton.addEventListener('click', () => menuPopup.classList.add('show'));
+        closeMenuButton.addEventListener('click', () => menuPopup.classList.remove('show'));
+
+        document.querySelectorAll('.menu-popup a').forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                const targetId = link.getAttribute('href');
+                menuPopup.classList.remove('show');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    setTimeout(() => targetElement.scrollIntoView({ behavior: 'smooth' }), 400);
+                }
+            });
+        });
+
+        document.addEventListener('click', event => {
+            if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
+                menuPopup.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>

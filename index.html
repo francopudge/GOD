@@ -154,7 +154,26 @@
             margin-top: 20px;
         }
 
-        /* --- Ace Card Section Styling --- */
+        /* ========== SCRIM LINK ========== */
+        .scrim-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: darkred;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        .scrim-link:hover {
+            background-color: #a00;
+            transform: translateY(-2px);
+        }
+
+        /* ========== ACE CARD SECTION ========== */
         .ace-card-gallery {
             display: flex;
             flex-direction: column;
@@ -267,6 +286,7 @@
             .right-group { gap: 10px; }
             .ace-card-container { max-width: 90%; }
             .ace-card-details h3 { font-size: 1.5em; }
+            .scrim-link { padding: 8px 15px; font-size: 0.9em; }
         }
     </style>
 </head>
@@ -282,7 +302,6 @@
         <div class="loader-text" id="progressPercent">0%</div>
     </div>
 
-    <!-- Background -->
     <img src="back1.png" alt="Background" class="background-image" />
 
     <!-- ========== HEADER ========== -->
@@ -291,7 +310,6 @@
             <img src="duel.png" alt="Duel" />
             <h1>G.O.D Duel</h1>
         </div>
-
         <div class="right-group">
             <img src="play.png" alt="Play Music" class="music-icon" id="musicButton" />
             <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
@@ -309,7 +327,7 @@
         <a href="#scrim-history">Scrim History</a>
     </div>
 
-    <!-- ========== MAIN CONTENT ========== -->
+    <!-- ========== MAIN SECTIONS ========== -->
     <main id="home">
         <h2>Home</h2>
         <p>Selamat datang di halaman utama Yugioh G.O.D Duel!</p>
@@ -352,13 +370,16 @@
 
     <main id="scrim-schedule">
         <h2>Scrim Schedule</h2>
-        <p>Jadwal pertandingan Scrim mendatang.</p>
+        <p>Cek jadwal pertandingan Scrim mendatang dan progres turnamen terbaru di Challonge:</p>
+        <a href="https://challonge.com/zljebnic" target="_blank" class="scrim-link">
+            Lihat Bracket & Jadwal Scrim
+        </a>
     </main>
     <hr />
 
     <main id="scrim-history">
         <h2>Scrim History</h2>
-        <p>Catatan pertandingan Scrim sebelumnya.</p>
+        <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
     </main>
 
     <!-- ========== FOOTER ========== -->

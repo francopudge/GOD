@@ -114,12 +114,25 @@
         .left-group img { height: 50px; }
         .left-group h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
 
+        .right-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .menu-icon,
-        .close-menu-icon {
+        .close-menu-icon,
+        .music-icon {
             height: 40px;
             cursor: pointer;
             filter: drop-shadow(0 0 2px black);
             user-select: none;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-icon:hover,
+        .music-icon:hover {
+            transform: scale(1.1);
         }
 
         .close-menu-icon {
@@ -197,7 +210,7 @@
             header { height: 60px; padding: 0 10px; }
             .left-group img { height: 40px; }
             .left-group h1 { font-size: 18px; }
-            .menu-icon, .close-menu-icon { height: 35px; }
+            .menu-icon, .close-menu-icon, .music-icon { height: 35px; }
             .close-menu-icon { top: 10px; right: 10px; }
             footer { height: 50px; }
             main { padding: 80px 15px 15px; }
@@ -205,6 +218,7 @@
             .loader-text { font-size: 3em; }
             .moving-bar { height: 8px; }
             #centerLogo { height: 180px; }
+            .right-group { gap: 10px; }
         }
     </style>
 </head>
@@ -229,7 +243,11 @@
             <img src="duel.png" alt="Duel" />
             <h1>G.O.D Duel</h1>
         </div>
-        <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
+
+        <div class="right-group">
+            <img src="play.png" alt="Play Music" class="music-icon" id="musicButton" />
+            <img src="menu.png" alt="Menu" class="menu-icon" id="menuButton" />
+        </div>
     </header>
 
     <!-- ===== MENU POPUP ===== -->
@@ -284,6 +302,9 @@
         <p>Yugioh G.O.D Duel © 2025</p>
     </footer>
 
+    <!-- ===== AUDIO PLAYER ===== -->
+    <audio id="bgm" src="Yu-Gi-Oh! GX BGM Camula theme.mp3" loop></audio>
+
     <!-- ===== SCRIPT ===== -->
     <script>
         const menuButton = document.getElementById('menuButton');
@@ -293,12 +314,13 @@
         const progressPercent = document.getElementById('progressPercent');
         const barLeft = document.getElementById('barLeft');
         const barRight = document.getElementById('barRight');
+        const musicButton = document.getElementById('musicButton');
+        const bgm = document.getElementById('bgm');
 
         let progress = 0;
         let maxBarWidthVW = 40; // default desktop
         const MAX_VISUAL_PROGRESS = 95;
 
-        // Deteksi layar kecil
         if (window.innerWidth <= 768) {
             maxBarWidthVW = 35;
         }
@@ -350,6 +372,23 @@
                 menuPopup.classList.remove('show');
             }
         });
+
+        // === MUSIC LOGIC ===
+        let isPlaying = false;
+        musicButton.addEventListener('click', () => {
+            if (isPlaying) {
+                bgm.pause();
+                musicButton.src = 'play.png';
+                isPlaying = false;
+            } else {
+                bgm.play();
+                musicButton.src = 'pause.png';
+                isPlaying = true;
+            }
+        });
+
+        // Pastikan musik berhenti saat tab ditutup/refresh
+        window.addEventListener('beforeunload', () => bgm.pause());
     </script>
 </body>
 </html>

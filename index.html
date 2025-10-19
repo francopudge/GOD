@@ -7,7 +7,9 @@
     <link rel="icon" type="image/png" href="duel.png" />
 
     <style>
-        /* ========== GLOBAL ========== */
+        /* ========================================================== */
+        /* ========================== GLOBAL & BASE STYLES ========================== */
+        /* ========================================================== */
         * {
             box-sizing: border-box;
         }
@@ -20,7 +22,35 @@
             color: #000;
         }
 
-        /* ========== PRELOADER ========== */
+        /* --- Main Content Container --- */
+        main {
+            max-width: 100vw;
+            padding: 100px 20px 20px;
+            text-align: center;
+        }
+
+        hr {
+            height: 3px;
+            background-color: black;
+            border: none;
+            margin-top: 20px;
+        }
+
+        /* --- Background --- */
+        .background-image {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+
+        /* ========================================================== */
+        /* ========================== PRELOADER STYLES ========================== */
+        /* ========================================================== */
         #preloader {
             position: fixed;
             inset: 0;
@@ -76,18 +106,10 @@
             z-index: 1002;
         }
 
-        /* ========== BACKGROUND ========== */
-        .background-image {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            pointer-events: none;
-        }
 
-        /* ========== HEADER ========== */
+        /* ========================================================== */
+        /* ========================== HEADER & NAVIGATION STYLES ========================== */
+        /* ========================================================== */
         header {
             position: fixed;
             top: 0;
@@ -140,21 +162,46 @@
             z-index: 25;
         }
 
-        /* ========== MAIN CONTENT ========== */
-        main {
-            max-width: 100vw;
-            padding: 100px 20px 20px;
-            text-align: center;
+        /* --- Menu Popup --- */
+        .menu-popup {
+            position: fixed;
+            inset: 0;
+            background: url('bar2.png') no-repeat center center / cover, #555;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 30px 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+            color: black;
+            z-index: 20;
         }
 
-        hr {
-            height: 3px;
-            background-color: black;
-            border: none;
-            margin-top: 20px;
+        .menu-popup.show { transform: translateX(0); }
+
+        .menu-popup a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            padding: 15px 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.85);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* ========== SCRIM LINK ========== */
+        .menu-popup a:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+
+        /* ========================================================== */
+        /* ========================== CONTENT SECTION STYLES ========================== */
+        /* ========================================================== */
+
+        /* --- Scrim Link --- */
         .scrim-link {
             display: inline-block;
             margin-top: 15px;
@@ -172,8 +219,40 @@
             background-color: #a00;
             transform: translateY(-2px);
         }
+        
+        /* --- Member Division Grid --- */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px;
+            margin-top: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-        /* ========== ACE CARD SECTION ========== */
+        .member-item {
+            background-color: rgba(255, 255, 255, 0.85); 
+            color: #000;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+        
+        .member-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 255, 0, 0.5); 
+        }
+        
+        /* --- Ace Card Section --- */
         .ace-card-gallery {
             display: flex;
             flex-direction: column;
@@ -221,7 +300,9 @@
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
         }
 
-        /* ========== FOOTER ========== */
+        /* ========================================================== */
+        /* ========================== FOOTER STYLES ========================== */
+        /* ========================================================== */
         footer {
             width: 100%;
             height: 60px;
@@ -236,63 +317,45 @@
 
         footer p { margin: 0; }
 
-        /* ========== MENU POPUP ========== */
-        .menu-popup {
-            position: fixed;
-            inset: 0;
-            background: url('bar2.png') no-repeat center center / cover, #555;
-            display: flex;
-            flex-direction: column;
-            padding: 80px 30px 40px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-            transform: translateX(100%);
-            transition: transform 0.4s ease-in-out;
-            color: black;
-            z-index: 20;
-        }
 
-        .menu-popup.show { transform: translateX(0); }
-
-        .menu-popup a {
-            display: block;
-            color: black;
-            text-decoration: none;
-            padding: 15px 25px;
-            margin-bottom: 12px;
-            font-weight: bold;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.85);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .menu-popup a:hover {
-            background-color: rgba(0, 0, 0, 0.3);
-            color: white;
-        }
-
-        /* ========== RESPONSIVE ========== */
+        /* ========================================================== */
+        /* ========================== RESPONSIVE STYLES (Mobile First) ========================== */
+        /* ========================================================== */
         @media (max-width: 768px) {
+            /* Header */
             header { height: 60px; padding: 0 10px; }
             .left-group img { height: 40px; }
             .left-group h1 { font-size: 18px; }
             .menu-icon, .close-menu-icon, .music-icon { height: 35px; }
             .close-menu-icon { top: 10px; right: 10px; }
+            .right-group { gap: 10px; }
+
+            /* Footer */
             footer { height: 50px; }
+            
+            /* Main */
             main { padding: 80px 15px 15px; }
-            .menu-popup { padding: 70px 20px 30px; }
+            .scrim-link { padding: 8px 15px; font-size: 0.9em; }
+
+            /* Preloader */
             .loader-text { font-size: 3em; }
             .moving-bar { height: 8px; }
             #centerLogo { height: 180px; }
-            .right-group { gap: 10px; }
+            
+            /* Menu Popup */
+            .menu-popup { padding: 70px 20px 30px; }
+            
+            /* Content Specific */
             .ace-card-container { max-width: 90%; }
             .ace-card-details h3 { font-size: 1.5em; }
-            .scrim-link { padding: 8px 15px; font-size: 0.9em; }
+            .member-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- ========== PRELOADER ========== -->
     <div id="preloader">
         <div class="preloader-animation-area">
             <img src="duel.png" alt="Logo Duel" class="center-icon" id="centerLogo" />
@@ -304,7 +367,6 @@
 
     <img src="back1.png" alt="Background" class="background-image" />
 
-    <!-- ========== HEADER ========== -->
     <header>
         <div class="left-group">
             <img src="duel.png" alt="Duel" />
@@ -316,7 +378,6 @@
         </div>
     </header>
 
-    <!-- ========== MENU POPUP ========== -->
     <div class="menu-popup" id="menuPopup">
         <img src="x1.png" alt="Tutup Menu" class="close-menu-icon" id="closeMenuButton" />
         <a href="#home">Home</a>
@@ -327,7 +388,6 @@
         <a href="#scrim-history">Scrim History</a>
     </div>
 
-    <!-- ========== MAIN SECTIONS ========== -->
     <main id="home">
         <h2>Home</h2>
         <p>Selamat datang di halaman utama Yugioh G.O.D Duel!</p>
@@ -336,7 +396,25 @@
 
     <main id="member-division">
         <h2>Member Division</h2>
-        <p>Informasi tentang pembagian divisi anggota tim.</p>
+        <p style="color: white; text-shadow: 1px 1px 3px black; margin-bottom: 20px;">
+            Berikut adalah daftar anggota tim duel Yugioh G.O.D:
+        </p>
+        <div class="member-grid">
+            <div class="member-item">Ridwan Kristiadi</div>
+            <div class="member-item">Ree</div>
+            <div class="member-item">Bagus</div>
+            <div class="member-item">Faris Akbar</div>
+            <div class="member-item">Kurikara</div>
+            <div class="member-item">Mulyadi</div>
+            <div class="member-item">Sanjaya Tuyul</div>
+            <div class="member-item">Zero MR</div>
+            <div class="member-item">Zen</div>
+            <div class="member-item">RGX7</div>
+            <div class="member-item">Kambing Gemming</div>
+            <div class="member-item">Norman</div>
+            <div class="member-item">Rahmat Rasyid</div>
+            <div class="member-item">Rizuu</div>
+        </div>
     </main>
     <hr />
 
@@ -382,15 +460,12 @@
         <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
     </main>
 
-    <!-- ========== FOOTER ========== -->
     <footer>
         <p>Yugioh G.O.D Duel © 2025</p>
     </footer>
 
-    <!-- ========== AUDIO ========== -->
     <audio id="bgm" src="Yu-Gi-Oh! GX BGM Camula theme.mp3" loop></audio>
 
-    <!-- ========== SCRIPT ========== -->
     <script>
         const menuButton = document.getElementById('menuButton');
         const menuPopup = document.getElementById('menuPopup');
@@ -406,6 +481,10 @@
         let maxBarWidthVW = window.innerWidth <= 768 ? 35 : 40;
         const MAX_VISUAL_PROGRESS = 95;
 
+        /**
+         * Sets the width of the moving bars based on the progress percentage.
+         * @param {number} percent - The current loading percentage (0-100).
+         */
         function setBarWidth(percent) {
             const visualProgress = Math.min(percent, MAX_VISUAL_PROGRESS);
             const currentWidth = (visualProgress / 100) * maxBarWidthVW;
@@ -413,8 +492,12 @@
             barRight.style.width = `${currentWidth}vw`;
         }
 
+        /**
+         * Simulates loading progress and hides the preloader when complete.
+         */
         function updateProgress() {
             if (progress < 100) {
+                // Increase progress randomly
                 progress += Math.floor(Math.random() * 8) + 3;
                 if (progress > 100) progress = 100;
 
@@ -422,10 +505,12 @@
                 setBarWidth(progress);
 
                 if (progress === 100) {
+                    // Hide preloader
                     preloader.style.opacity = '0';
                     setTimeout(() => {
                         preloader.style.display = 'none';
-                        const target = document.getElementById('member-ace-card');
+                        // Scroll to the Member Division section after loading (was previously 'member-ace-card' in the original code, changed back to 'member-division' for better flow)
+                        const target = document.getElementById('member-division');
                         if (target) {
                             setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
                         }
@@ -449,14 +534,16 @@
                 menuPopup.classList.remove('show');
                 const target = document.querySelector(targetId);
                 if (target) {
+                    // Scroll to target element with delay after menu closes
                     setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 400);
                 }
             });
         });
 
+        // Close menu if clicking outside (Note: This logic might interfere with mobile touch events)
         document.addEventListener('click', event => {
-            if (!menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
-                menuPopup.classList.remove('show');
+            if (menuPopup.classList.contains('show') && !menuPopup.contains(event.target) && !menuButton.contains(event.target)) {
+                 menuPopup.classList.remove('show');
             }
         });
 
@@ -465,14 +552,16 @@
         musicButton.addEventListener('click', () => {
             if (isPlaying) {
                 bgm.pause();
-                musicButton.src = 'play.png';
+                musicButton.src = 'play.png'; // Ganti ke ikon Play
             } else {
-                bgm.play().catch(() => console.log("Autoplay blocked."));
-                musicButton.src = 'pause.png';
+                // Attempt to play, catch if autoplay is blocked
+                bgm.play().catch(() => console.log("Autoplay blocked. User interaction required."));
+                musicButton.src = 'pause.png'; // Ganti ke ikon Pause
             }
             isPlaying = !isPlaying;
         });
 
+        // Pause BGM when leaving the page
         window.addEventListener('beforeunload', () => bgm.pause());
     </script>
 </body>

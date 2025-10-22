@@ -22,7 +22,7 @@
 
         /* Main Content Container */
         main {
-            max-width: 100vw;
+            /* max-width: 100vw; - Dihapus/Diganti karena sudah tercakup oleh body */
             padding: 100px 20px 20px;
             text-align: center;
         }
@@ -311,9 +311,12 @@
         
         /* Ace Card Section */
         .ace-card-gallery {
+            /* Perubahan: Mengganti flex-direction: column menjadi flex-wrap: wrap untuk tata letak grid */
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row; /* Diatur ulang ke row default */
+            flex-wrap: wrap; /* Memungkinkan item untuk pindah baris */
+            justify-content: center; /* Memusatkan kartu */
+            align-items: flex-start; /* Mengatur item dari atas */
             gap: 30px;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.1);
@@ -329,6 +332,8 @@
             gap: 10px;
             max-width: 350px;
             width: 100%;
+            /* Menambahkan margin untuk responsivitas yang lebih baik */
+            margin-bottom: 10px; 
         }
 
         .ace-card-details {
@@ -493,7 +498,7 @@
                     <p>Member: <strong>Ridwan Kristiadi</strong></p>
                     <h3>Cyber Dragon Infinity</h3>
                 </div>
-                <img src="cyber.png" alt="Arcana Force Chaos Ruler" class="ace-card-image" />
+                <img src="cyber.png" alt="Cyber Dragon Infinity" class="ace-card-image" />
             </div>
 
             <div class="ace-card-container">
@@ -509,7 +514,7 @@
                     <p>Member: <strong>NRMN</strong></p>
                     <h3>Imsety, Glory Of Horus</h3>
                 </div>
-                <img src="horus.png" alt="Horus" class="ace-card-image" />
+                <img src="horus.png" alt="Imsety, Glory Of Horus" class="ace-card-image" />
             </div>
 
             <div class="ace-card-container">
@@ -526,15 +531,15 @@
                     <p>Member: <strong>Rahmat Rasyid</strong></p>
                     <h3>Tearlament Kailedo-Heart</h3>
                 </div>
-                <img src="tearlament.png" alt="Tearlament Kitkallos" class="ace-card-image" />
+                <img src="tearlament.png" alt="Tearlament Kailedo-Heart" class="ace-card-image" />
             </div>
 
-           <div class="ace-card-container">
+            <div class="ace-card-container">
                 <div class="ace-card-details">
                     <p>Member: <strong>RGX7</strong></p>
                     <h3>Crystron Quandax</h3>
                 </div>
-                <img src="quandax.png" alt="Quandax, Ragnaduel Master" class="ace-card-image" />
+                <img src="quandax.png" alt="Crystron Quandax" class="ace-card-image" />
             </div>
 
             <div class="ace-card-container">
@@ -542,7 +547,7 @@
                     <p>Member: <strong>Revolts</strong></p>
                     <h3>Stardust Sifr Divine Dragon</h3>
                 </div>
-                <img src="sifr.png" alt="Quandax, Ragnaduel Master" class="ace-card-image" />
+                <img src="sifr.png" alt="Stardust Sifr Divine Dragon" class="ace-card-image" />
             </div>
 
             <div class="ace-card-container">
@@ -550,19 +555,17 @@
                     <p>Member: <strong>Waifunaga038</strong></p>
                     <h3>Super Polymerization</h3>
                 </div>
-                <img src="super.png" alt="Quandax, Ragnaduel Master" class="ace-card-image" />
+                <img src="super.png" alt="Super Polymerization" class="ace-card-image" />
             </div>
-        </div>
 
-        <div class="ace-card-container">
+            <div class="ace-card-container">
                 <div class="ace-card-details">
                     <p>Member: <strong>Zeromr</strong></p>
                     <h3>Ghoti of the Deep Beyond</h3>
                 </div>
-                <img src="goti.png" alt="Quandax, Ragnaduel Master" class="ace-card-image" />
+                <img src="goti.png" alt="Ghoti of the Deep Beyond" class="ace-card-image" />
             </div>
-        </div>
-        
+            
         </div>
     </main>
     <hr />
@@ -608,7 +611,8 @@
 
         // === PRELOADER VARIABLES ===
         let progress = 0;
-        let maxBarWidthVW = window.innerWidth <= 768 ? 35 : 40;
+        // Penyesuaian nilai agar sesuai dengan viewport width (vw)
+        let maxBarWidthVW = window.innerWidth <= 768 ? 35 : 40; 
         const MAX_VISUAL_PROGRESS = 95;
 
         // === PRELOADER FUNCTIONS ===

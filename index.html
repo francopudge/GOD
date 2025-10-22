@@ -22,9 +22,18 @@
 
         /* Main Content Container */
         main {
-            /* max-width: 100vw; - Dihapus/Diganti karena sudah tercakup oleh body */
             padding: 100px 20px 20px;
             text-align: center;
+        }
+
+        main section {
+            padding-top: 20px; /* Jarak antara section setelah hr */
+        }
+
+        main p {
+            color: white;
+            text-shadow: 1px 1px 3px black;
+            margin-bottom: 25px;
         }
 
         hr {
@@ -188,8 +197,15 @@
             color: white;
         }
 
+        /* ========================== SECTION HEADINGS ========================== */
+        main h2 {
+            color: yellow;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px black;
+        }
+
         /* ========================== HOME SECTION STYLES ========================== */
-        .home-content {
+        #home .home-content {
             padding: 40px 20px;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 15px;
@@ -198,7 +214,7 @@
             margin: 0 auto;
         }
 
-        .home-logo {
+        #home .home-logo {
             width: 100%;
             max-width: 250px;
             height: auto;
@@ -206,7 +222,7 @@
             filter: drop-shadow(0 0 10px gold);
         }
 
-        .home-title {
+        #home .home-title {
             color: white;
             font-size: 3.5em;
             text-shadow: 0 0 15px yellow, 0 0 5px orange;
@@ -215,7 +231,7 @@
             font-weight: 900;
         }
 
-        .home-slogan {
+        #home .home-slogan {
             color: #ffcc00; /* Darker gold/yellow */
             font-size: 1.5em;
             font-style: italic;
@@ -226,7 +242,7 @@
             display: inline-block;
         }
 
-        .home-cta {
+        #home .home-cta {
             background-color: darkred;
             color: white;
             padding: 12px 25px;
@@ -239,7 +255,7 @@
             display: inline-block;
         }
 
-        .home-cta:hover {
+        #home .home-cta:hover {
             background-color: #a00;
             transform: scale(1.05);
             box-shadow: 0 5px 20px rgba(255, 215, 0, 0.8);
@@ -251,33 +267,7 @@
             100% { transform: translateY(0px); }
         }
 
-        /* ========================== OTHER CONTENT SECTION STYLES ========================== */
-        main h2 {
-            color: yellow;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 5px black;
-        }
-
-        /* Scrim Link */
-        .scrim-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: darkred;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
-
-        .scrim-link:hover {
-            background-color: #a00;
-            transform: translateY(-2px);
-        }
-        
-        /* Member Division Grid */
+        /* ========================== MEMBER DIVISION STYLES ========================== */
         .member-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -303,20 +293,19 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: default;
         }
-        
+
         .member-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(255, 255, 0, 0.5);
         }
-        
-        /* Ace Card Section */
+
+        /* ========================== ACE CARD STYLES ========================== */
         .ace-card-gallery {
-            /* Perubahan: Mengganti flex-direction: column menjadi flex-wrap: wrap untuk tata letak grid */
             display: flex;
-            flex-direction: row; /* Diatur ulang ke row default */
-            flex-wrap: wrap; /* Memungkinkan item untuk pindah baris */
-            justify-content: center; /* Memusatkan kartu */
-            align-items: flex-start; /* Mengatur item dari atas */
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
             gap: 30px;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.1);
@@ -332,8 +321,7 @@
             gap: 10px;
             max-width: 350px;
             width: 100%;
-            /* Menambahkan margin untuk responsivitas yang lebih baik */
-            margin-bottom: 10px; 
+            margin-bottom: 10px;
         }
 
         .ace-card-details {
@@ -362,6 +350,97 @@
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
         }
 
+        /* ========================== HALL OF FAME STYLES ========================== */
+        .fame-content {
+            background: linear-gradient(135deg, rgba(50, 0, 50, 0.8), rgba(80, 0, 0, 0.8));
+            border: 3px solid gold;
+            border-radius: 15px;
+            padding: 30px 20px;
+            max-width: 700px;
+            margin: 20px auto;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 1), inset 0 0 10px rgba(100, 0, 0, 0.9);
+            color: white;
+        }
+
+        .fame-content p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .fame-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .fame-item {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid gold;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .fame-item:nth-child(even) {
+            border-left-color: darkred;
+        }
+
+        .fame-title {
+            background-color: gold;
+            color: darkred;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            text-shadow: none;
+        }
+
+        /* ========================== SCRIM SCHEDULE STYLES ========================== */
+        .schedule-box {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 4px solid darkred;
+            border-radius: 10px;
+            padding: 25px 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .schedule-box p {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        /* Scrim Link Button */
+        .scrim-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 15px 30px;
+            background-color: darkred;
+            color: white;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1em;
+            border-radius: 8px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+        }
+
+        .scrim-link:hover {
+            background-color: #a00;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(255, 215, 0, 0.7);
+        }
+
         /* ========================== FOOTER STYLES ========================== */
         footer {
             width: 100%;
@@ -383,30 +462,33 @@
             header { height: 60px; padding: 0 10px; }
             .left-group img { height: 40px; }
             .left-group h1 { font-size: 18px; }
-            .menu-icon, .close-menu-icon, .music-icon { height: 35px; }
+            .menu-icon, 
+            .close-menu-icon, 
+            .music-icon { height: 35px; }
             .close-menu-icon { top: 10px; right: 10px; }
             .right-group { gap: 10px; }
 
             /* Footer */
             footer { height: 50px; }
-            
+
             /* Main */
             main { padding: 80px 15px 15px; }
-            .scrim-link { padding: 8px 15px; font-size: 0.9em; }
+            .scrim-link { padding: 10px 20px; font-size: 1em; }
             main h2 { font-size: 2em; }
+            main p { margin-bottom: 20px; } /* Consistent margin for mobile paragraphs */
 
             /* Preloader */
             .loader-text { font-size: 3em; }
             .moving-bar { height: 8px; }
             #centerLogo { height: 180px; }
-            
+
             /* Menu Popup */
             .menu-popup { padding: 70px 20px 30px; }
-            
+
             /* Home Section Responsive */
-            .home-title { font-size: 2.5em; }
-            .home-slogan { font-size: 1.2em; }
-            .home-logo { max-width: 180px; }
+            #home .home-title { font-size: 2.5em; }
+            #home .home-slogan { font-size: 1.2em; }
+            #home .home-logo { max-width: 180px; }
 
             /* Content Specific */
             .ace-card-container { max-width: 90%; }
@@ -432,7 +514,7 @@
 
     <header>
         <div class="left-group">
-            <img src="duel.png" alt="Duel" />
+            <img src="duel.png" alt="Duel Logo" />
             <h1>G.O.D Duel</h1>
         </div>
         <div class="right-group">
@@ -448,146 +530,157 @@
         <a href="#member-ace-card">Member Ace Card</a>
         <a href="#hall-of-fame">Hall of Fame</a>
         <a href="#scrim-schedule">Scrim Schedule</a>
-        <a href="#scrim-history">Scrim History</a>
     </div>
 
-    <main id="home">
-        <div class="home-content">
-            <img src="duel.png" alt="Yugioh G.O.D Duel Logo" class="home-logo" />
-            <h2 class="home-title">YUGIOH G.O.D DUEL</h2>
-            <p class="home-slogan">"Burning Soul!"</p>
-            <p style="color: white; margin-bottom: 25px; text-shadow: 1px 1px 2px black;">
-                Selamat datang, Duelist! Siapkan Deck Anda dan hadapi tantangan.
+    <main>
+        <section id="home">
+            <div class="home-content">
+                <img src="duel.png" alt="Yugioh G.O.D Duel Logo" class="home-logo" />
+                <h2 class="home-title">YUGIOH G.O.D DUEL</h2>
+                <p class="home-slogan">"Burning Soul!"</p>
+                <p>
+                    Selamat datang, Duelist! Siapkan Deck Anda dan hadapi tantangan.
+                </p>
+                <a href="#member-division" class="home-cta" id="homeCtaButton">
+                    LIHAT ANGGOTA KAMI
+                </a>
+            </div>
+        </section>
+        <hr />
+
+        <section id="member-division">
+            <h2>Member Division</h2>
+            <p>
+                Berikut adalah daftar anggota tim duel Yugioh G.O.D Duel:
             </p>
-            <a href="#member-division" class="home-cta" id="homeCtaButton">
-                LIHAT ANGGOTA KAMI
-            </a>
-        </div>
-    </main>
-    <hr />
-
-    <main id="member-division">
-        <h2>Member Division</h2>
-        <p style="color: white; text-shadow: 1px 1px 3px black; margin-bottom: 20px;">
-            Berikut adalah daftar anggota tim duel Yugioh G.O.D Duel:
-        </p>
-        <div class="member-grid">
-            <div class="member-item">Ridwan Kristiadi</div>
-            <div class="member-item">Ree</div>
-            <div class="member-item">Revolts</div>
-            <div class="member-item">Waifunaga038</div>
-            <div class="member-item">Kurikara</div>
-            <div class="member-item">Mulyadi</div>
-            <div class="member-item">Sanjaya Tuyul</div>
-            <div class="member-item">Zeromr</div>
-            <div class="member-item">Zen</div>
-            <div class="member-item">RGX7</div>
-            <div class="member-item">Kambing Gemming</div>
-            <div class="member-item">NRMN</div>
-            <div class="member-item">Rahmat Rasyid</div>
-            <div class="member-item">Rizuu</div>
-        </div>
-    </main>
-    <hr />
-
-    <main id="member-ace-card">
-        <h2>Member Ace Card</h2>
-        <div class="ace-card-gallery">
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>Ridwan Kristiadi</strong></p>
-                    <h3>Cyber Dragon Infinity</h3>
-                </div>
-                <img src="cyber.png" alt="Cyber Dragon Infinity" class="ace-card-image" />
+            <div class="member-grid">
+                <div class="member-item">Ridwan Kristiadi</div>
+                <div class="member-item">Ree</div>
+                <div class="member-item">Revolts</div>
+                <div class="member-item">Waifunaga038</div>
+                <div class="member-item">Kurikara</div>
+                <div class="member-item">Mulyadi</div>
+                <div class="member-item">Sanjaya Tuyul</div>
+                <div class="member-item">Zeromr</div>
+                <div class="member-item">Zen</div>
+                <div class="member-item">RGX7</div>
+                <div class="member-item">Kambing Gemming</div>
+                <div class="member-item">NRMN</div>
+                <div class="member-item">Rahmat Rasyid</div>
+                <div class="member-item">Rizuu</div>
             </div>
+        </section>
+        <hr />
 
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>Zen</strong></p>
-                    <h3>Cosmic Blazar Dragon</h3>
+        <section id="member-ace-card">
+            <h2>Member Ace Card</h2>
+            <div class="ace-card-gallery">
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>Ridwan Kristiadi</strong></p>
+                        <h3>Cyber Dragon Infinity</h3>
+                    </div>
+                    <img src="cyber.png" alt="Cyber Dragon Infinity" class="ace-card-image" />
                 </div>
-                <img src="cosmic.png" alt="Cosmic Blazar Dragon" class="ace-card-image" />
-            </div>
-            
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>NRMN</strong></p>
-                    <h3>Imsety, Glory Of Horus</h3>
+
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>Zen</strong></p>
+                        <h3>Cosmic Blazar Dragon</h3>
+                    </div>
+                    <img src="cosmic.png" alt="Cosmic Blazar Dragon" class="ace-card-image" />
                 </div>
-                <img src="horus.png" alt="Imsety, Glory Of Horus" class="ace-card-image" />
-            </div>
 
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>Kurikara</strong></p>
-                    <h3>Kurikara Divincarnate</h3>
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>NRMN</strong></p>
+                        <h3>Imsety, Glory Of Horus</h3>
+                    </div>
+                    <img src="horus.png" alt="Imsety, Glory Of Horus" class="ace-card-image" />
                 </div>
-                <img src="kurikara.png" alt="Kurikara Divincarnate" class="ace-card-image" />
-            </div>
-            
-            
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>Rahmat Rasyid</strong></p>
-                    <h3>Tearlament Kailedo-Heart</h3>
+
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>Kurikara</strong></p>
+                        <h3>Kurikara Divincarnate</h3>
+                    </div>
+                    <img src="kurikara.png" alt="Kurikara Divincarnate" class="ace-card-image" />
                 </div>
-                <img src="tearlament.png" alt="Tearlament Kailedo-Heart" class="ace-card-image" />
-            </div>
 
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>RGX7</strong></p>
-                    <h3>Crystron Quandax</h3>
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>Rahmat Rasyid</strong></p>
+                        <h3>Tearlament Kailedo-Heart</h3>
+                    </div>
+                    <img src="tearlament.png" alt="Tearlament Kailedo-Heart" class="ace-card-image" />
                 </div>
-                <img src="quandax.png" alt="Crystron Quandax" class="ace-card-image" />
-            </div>
 
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>Revolts</strong></p>
-                    <h3>Stardust Sifr Divine Dragon</h3>
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>RGX7</strong></p>
+                        <h3>Crystron Quandax</h3>
+                    </div>
+                    <img src="quandax.png" alt="Crystron Quandax" class="ace-card-image" />
                 </div>
-                <img src="sifr.png" alt="Stardust Sifr Divine Dragon" class="ace-card-image" />
-            </div>
 
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>Waifunaga038</strong></p>
-                    <h3>Super Polymerization</h3>
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>Revolts</strong></p>
+                        <h3>Stardust Sifr Divine Dragon</h3>
+                    </div>
+                    <img src="sifr.png" alt="Stardust Sifr Divine Dragon" class="ace-card-image" />
                 </div>
-                <img src="super.png" alt="Super Polymerization" class="ace-card-image" />
-            </div>
 
-            <div class="ace-card-container">
-                <div class="ace-card-details">
-                    <p>Member: <strong>Zeromr</strong></p>
-                    <h3>Ghoti of the Deep Beyond</h3>
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>Waifunaga038</strong></p>
+                        <h3>Super Polymerization</h3>
+                    </div>
+                    <img src="super.png" alt="Super Polymerization" class="ace-card-image" />
                 </div>
-                <img src="goti.png" alt="Ghoti of the Deep Beyond" class="ace-card-image" />
+
+                <div class="ace-card-container">
+                    <div class="ace-card-details">
+                        <p>Member: <strong>Zeromr</strong></p>
+                        <h3>Ghoti of the Deep Beyond</h3>
+                    </div>
+                    <img src="goti.png" alt="Ghoti of the Deep Beyond" class="ace-card-image" />
+                </div>
+
             </div>
-            
-        </div>
-    </main>
-    <hr />
+        </section>
+        <hr />
 
-    <main id="hall-of-fame">
-        <h2>Hall of Fame</h2>
-        <p>Daftar prestasi dan anggota tim legendaris.</p>
-    </main>
-    <hr />
+        <section id="hall-of-fame">
+            <h2>Hall of Fame ✨</h2>
+            <div class="fame-content">
+                <p>
+                    Mengabadikan nama-nama Duellist legendaris dan pencapaian tertinggi di Yugioh G.O.D Duel.
+                    Mereka adalah inspirasi bagi setiap langkah duel kita!
+                </p>
+                <ul class="fame-list">
+                    <li class="fame-item">
+                        <span>Revolts</span>
+                        <span class="fame-title">Legendary Duelist</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <hr />
 
-    <main id="scrim-schedule">
-        <h2>Scrim Schedule</h2>
-        <p>Cek jadwal pertandingan Scrim mendatang dan progres turnamen terbaru di Challonge:</p>
-        <a href="https://challonge.com/zljebnic" target="_blank" class="scrim-link">
-            Lihat Bracket & Jadwal Scrim
-        </a>
-    </main>
-    <hr />
-
-    <main id="scrim-history">
-        <h2>Scrim History</h2>
-        <p>Riwayat dan hasil pertandingan Scrim yang telah dilakukan.</p>
+        <section id="scrim-schedule">
+            <h2>🔥 Scrim Schedule 🔥</h2>
+            <div class="schedule-box">
+                <p>
+                    Saksikan aksi duel terbaik tim kami! Cek **Bracket** dan **Jadwal Pertandingan** terbaru
+                    untuk mendukung Duellist favoritmu dalam pertarungan sengit!
+                </p>
+                <a href="https://challonge.com/zljebnic" target="_blank" class="scrim-link">
+                    ➡️ LIHAT BRACKET & JADWAL SCRIM TERKINI ⬅️
+                </a>
+            </div>
+        </section>
+        <hr />
     </main>
 
     <footer>
@@ -611,9 +704,11 @@
 
         // === PRELOADER VARIABLES ===
         let progress = 0;
-        // Penyesuaian nilai agar sesuai dengan viewport width (vw)
-        let maxBarWidthVW = window.innerWidth <= 768 ? 35 : 40; 
-        const MAX_VISUAL_PROGRESS = 95;
+        // Determines bar width based on screen size (VW unit for responsiveness)
+        let maxBarWidthVW = window.innerWidth <= 768 ? 35 : 40;
+        const MAX_VISUAL_PROGRESS = 95; // Visual progress stops here to allow a final 100% pop
+        const PRELOADER_TRANSITION_DURATION = 500; // Matches CSS transition time for opacity
+        const MENU_TRANSITION_DURATION = 400; // Matches CSS transition time for transform
 
         // === PRELOADER FUNCTIONS ===
         /**
@@ -640,6 +735,9 @@
                 setBarWidth(progress);
 
                 if (progress === 100) {
+                    // Final visual progress to 100% just before hiding
+                    setBarWidth(100);
+
                     // Hide preloader
                     preloader.style.opacity = '0';
                     setTimeout(() => {
@@ -648,47 +746,45 @@
                         const target = document.getElementById('home');
                         if (target) {
                             // Delay scroll to allow preloader transition to finish
-                            setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
+                            target.scrollIntoView({ behavior: 'smooth' });
                         }
-                    }, 500); // Matches the preloader transition duration
+                    }, PRELOADER_TRANSITION_DURATION + 100); // 100ms buffer
+
                 } else {
                     setTimeout(updateProgress, 80);
                 }
             }
         }
 
-        // === EVENT LISTENERS ===
-        
-        // 1. Preloader Start
-        document.addEventListener('DOMContentLoaded', updateProgress);
+        // === EVENT HANDLERS ===
 
-        // 2. Menu Logic
-        menuButton.addEventListener('click', () => menuPopup.classList.add('show'));
-        closeMenuButton.addEventListener('click', () => menuPopup.classList.remove('show'));
+        // 1. Menu Logic
+        const toggleMenu = (show) => {
+            if (show) {
+                menuPopup.classList.add('show');
+            } else {
+                menuPopup.classList.remove('show');
+            }
+        };
 
+        menuButton.addEventListener('click', () => toggleMenu(true));
+        closeMenuButton.addEventListener('click', () => toggleMenu(false));
+
+        // Navigation links in the popup
         document.querySelectorAll('.menu-popup a').forEach(link => {
             link.addEventListener('click', event => {
                 event.preventDefault();
                 const targetId = link.getAttribute('href');
-                menuPopup.classList.remove('show');
+                toggleMenu(false); // Close the menu
                 const target = document.querySelector(targetId);
                 if (target) {
                     // Scroll to target element with delay after menu closes transition
-                    setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 400);
+                    setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), MENU_TRANSITION_DURATION);
                 }
             });
         });
 
-        // Close menu if clicking outside (refined for safety)
-        document.addEventListener('click', event => {
-            const isClickInsideMenu = menuPopup.contains(event.target);
-            const isClickOnMenuButton = menuButton.contains(event.target);
-            if (menuPopup.classList.contains('show') && !isClickInsideMenu && !isClickOnMenuButton) {
-                menuPopup.classList.remove('show');
-            }
-        });
-
-        // 3. Music Logic
+        // 2. Music Logic
         let isPlaying = false;
         musicButton.addEventListener('click', () => {
             if (isPlaying) {
@@ -696,16 +792,20 @@
                 musicButton.src = 'play.png'; // Ganti ke ikon Play
             } else {
                 // Attempt to play, catch if autoplay is blocked
-                bgm.play().catch(() => console.log("Autoplay blocked. User interaction required."));
+                bgm.play().catch(error => console.error("Autoplay blocked:", error));
                 musicButton.src = 'pause.png'; // Ganti ke ikon Pause
             }
             isPlaying = !isPlaying;
         });
 
-        // Pause BGM when leaving the page
-        window.addEventListener('beforeunload', () => bgm.pause());
-        
-        // 4. Home CTA Logic (with 1 second delay)
+        // Pause BGM when leaving the page (for better user experience)
+        window.addEventListener('beforeunload', () => {
+            if (isPlaying) {
+                bgm.pause();
+            }
+        });
+
+        // 3. Home CTA Logic (with 1 second delay)
         homeCtaButton.addEventListener('click', event => {
             event.preventDefault(); // Mencegah scrolling langsung
             const targetId = homeCtaButton.getAttribute('href');
@@ -719,11 +819,19 @@
             }
         });
 
-        // 5. Responsive Resize Handler (for preloader bar)
+        // 4. Responsive Resize Handler (for preloader bar)
         window.addEventListener('resize', () => {
+            // Recalculate maxBarWidthVW on resize
             maxBarWidthVW = window.innerWidth <= 768 ? 35 : 40;
-            setBarWidth(progress);
+            // Only update bar width if preloader is still visible (progress < 100)
+            if (progress < 100) {
+                setBarWidth(progress);
+            }
         });
+
+        // === INITIALIZATION ===
+        // Preloader Start on Content Load
+        document.addEventListener('DOMContentLoaded', updateProgress);
     </script>
 </body>
 </html>
